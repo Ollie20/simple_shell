@@ -91,7 +91,5 @@ int main() {
             execute_command(arguments[0], arguments);
         }
     }
-
-    free(input);
     return 0;
 }
