@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
     (void) argc;
     char *input = NULL;
     size_t input_size = 0;
+    char *prompt = (char *)malloc(len + 2);
     char *arguments[MAX_ARGUMENTS];
 
     // Check if input is coming from a pipe
@@ -56,10 +57,12 @@ int main(int argc, char *argv[]) {
         free(input);
         exit(EXIT_SUCCESS);
     }
-
+    
+    strcpy(prompt, argv[0]);
+    strcat(prompt, "$ ");
     // Interactive shell
     while (1) {
-        write(STDOUT_FILENO, argv[0], 7);
+        write(STDOUT_FILENO, prompt, 7);
         if (getline(&input, &input_size, stdin) == -1) {
             // Handle EOF (Ctrl + D) gracefully
             write(STDOUT_FILENO, "\n", 1);
