@@ -22,6 +22,7 @@ void execute_command(char *command, char *arguments[]) {
 
 int main(int argc, char *argv[]) {
     (void) argc;
+    size_t len = strlen(argv[0]);
     char *input = NULL;
     size_t input_size = 0;
     char *prompt = (char *)malloc(len + 2);
