@@ -20,7 +20,8 @@ void execute_command(char *command, char *arguments[]) {
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+    (void) argc;
     char *input = NULL;
     size_t input_size = 0;
     char *arguments[MAX_ARGUMENTS];
@@ -58,7 +59,7 @@ int main() {
 
     // Interactive shell
     while (1) {
-        write(STDOUT_FILENO, "shell> ", 7);
+        write(STDOUT_FILENO, argv[0], 7);
         if (getline(&input, &input_size, stdin) == -1) {
             // Handle EOF (Ctrl + D) gracefully
             write(STDOUT_FILENO, "\n", 1);
